@@ -6,7 +6,7 @@ type AuthPageProps = {};
 const AuthPage: React.FC<AuthPageProps> = () => {
    return (
       <div className="h-screen relative">
-         <div className="mx-auto">
+         <div>
             <Navbar />
          </div>
       </div>
