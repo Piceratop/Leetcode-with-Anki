@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import Settings from './Settings'
@@ -7,27 +7,41 @@ import { useState } from 'react'
 export default function Header() {
    const [showSettings, setShowSettings] = useState(false)
    const { primaryColor, darkMode } = useSelector((state: RootState) => state.settings)
+   const location = useLocation()
 
    return (
-      <header className={'dark:bg-gray-950 dark:text-white transition-colors duration-200'}>
+      <header className={`dark:bg-gray-950 dark:text-white transition-colors duration-200`}>
          <nav className="container mx-auto px-4 py-3">
             <div className="flex items-center justify-between">
-               <Link to="/" className="text-xl font-bold" style={{ color: primaryColor }}>
+               <Link
+                  to="/"
+                  className="text-2xl font-bold hover:text-primary transition-colors duration-200"
+                  style={{ color: primaryColor }}
+               >
                   LeetCode Anki
                </Link>
                <div className="flex items-center space-x-4">
-                  <Link to="/problems" className="nav-text">
+                  <Link
+                     to="/problems"
+                     className={`nav-text ${location.pathname === '/problems' ? 'text-primary' : ''}`}
+                  >
                      Problems
                   </Link>
-                  <Link to="/flashcards" className="nav-text">
+                  <Link
+                     to="/flashcards"
+                     className={`nav-text ${location.pathname === '/flashcards' ? 'text-primary' : ''}`}
+                  >
                      Flashcards
                   </Link>
-                  <Link to="/stats" className="nav-text">
+                  <Link
+                     to="/stats"
+                     className={`nav-text ${location.pathname === '/stats' ? 'text-primary' : ''}`}
+                  >
                      Stats
                   </Link>
                   <button
                      onClick={() => setShowSettings(!showSettings)}
-                     className="p-2 rounded-full hover:text-primary transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-800"
+                     className={`p-2 rounded-full hover:text-primary transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-800 ${showSettings ? 'text-primary' : ''}`}
                   >
                      <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +69,7 @@ export default function Header() {
          </nav>
 
          {showSettings && (
-            <div className="absolute right-4 top-16 z-50">
+            <div className={`absolute right-4 top-16 z-50`}>
                <Settings />
             </div>
          )}
