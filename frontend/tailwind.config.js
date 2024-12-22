@@ -4,8 +4,19 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
     "./public/index.html"
   ],
+  darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: 'var(--primary-color)',
+      },
+      borderColor: {
+        primary: 'var(--primary-color)',
+      },
+      textColor: {
+        primary: 'var(--primary-color)',
+      }
+    },
   },
   plugins: [],
 }
