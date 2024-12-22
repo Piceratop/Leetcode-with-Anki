@@ -7,12 +7,10 @@ export default function Settings() {
    const dispatch = useDispatch()
    const { primaryColor, darkMode } = useSelector((state: RootState) => state.settings)
 
-   // Update CSS variable when primary color changes
    useEffect(() => {
       document.documentElement.style.setProperty('--primary-color', primaryColor)
    }, [primaryColor])
 
-   // Update dark mode class on body
    useEffect(() => {
       if (darkMode) {
          document.documentElement.classList.add('dark')
